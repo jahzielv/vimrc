@@ -1,9 +1,9 @@
 set nocompatible
 set colorcolumn=80
-highlight ColorColumn ctermbg=235 guibg=#000000
+highlight ColorColumn ctermbg=15
 set expandtab
 set tabstop=4
-set autoindent
+"set autoindent
 set number
 set guifont=Courier_New:h9
 map <F2> :tabnew<CR>
@@ -23,3 +23,16 @@ map <C-c> :call JCommentWriter()<CR>
 if has("autocmd")
   filetype plugin indent on
 endif
+"map <F4> :silent !ctags '%:t'<CR>
+function! WriteAndUpdateCtags()
+    execute ":w"
+    execute ":silent !ctags '%'"
+    execute ":redraw!"
+endfunction
+map <C-w> :call WriteAndUpdateCtags()<CR>
+map <C-S-p> <C-x><C-]><CR>
+function! CompileJava()
+    execute ":! javac '%'"
+    execute ":! java '%:r'"
+endfunction
+map <F4> :call CompileJava()<CR>
