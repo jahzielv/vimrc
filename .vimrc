@@ -3,7 +3,7 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=15
 set expandtab
 set tabstop=4
-"set autoindent
+set autoindent
 set number
 set guifont=Courier_New:h9
 map <F2> :tabnew<CR>
@@ -36,3 +36,15 @@ function! CompileJava()
     execute ":! java '%:r'"
 endfunction
 map <F4> :call CompileJava()<CR>
+inoremap { {<CR>}<Esc>ko<C-H><C-H><C-H><C-H>
+
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap " ""<ESC>i
+inoremap <C-J> Jahziel Villasana-Espinoza
+
+function! InsertComments()
+    <S-i>//<ESC>
+endfunction
+vmap \ :s!^!//!<CR>
+vmap # :s!^//!!<CR>
